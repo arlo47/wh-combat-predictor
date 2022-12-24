@@ -1,4 +1,4 @@
-import { Die } from "./Die";
+import { Die } from './Die';
 
 /**
  * Handles rolling multiple die & applying modifiers
