@@ -1,0 +1,21 @@
+{
+  "name": "wh-dice-predictor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "nodemon": "^2.0.20",
+    "parcel": "^2.8.2",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
+  }
+}
