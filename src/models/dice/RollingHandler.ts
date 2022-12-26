@@ -24,8 +24,8 @@ export class RollingHandler {
    * Generates an array of random numbers between 1 & 6
    * where the array length is equal to numberOfDice
    */
-  public rollDice(numberOfDice: number): number[] {
-    const diceResults: number[] = [];
+  public rollDice(numberOfDice: number): DieFaces[] {
+    const diceResults: DieFaces[] = [];
 
     for (let i = 0; i < numberOfDice; i++) {
       diceResults.push(this.die.rollDie());

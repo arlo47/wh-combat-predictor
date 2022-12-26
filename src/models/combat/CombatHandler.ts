@@ -27,7 +27,7 @@ export class CombatHandler {
    * Is S LOWER than T                5+
    * Is S HALF or less than T         6+
    */
-  public static compareStrengthToToughness(s: number, t: number): number {
+  public compareStrengthToToughness(s: number, t: number): number {
     if (s * 2 >= t) {
       return 2;
     } else if (s > t) {
@@ -43,27 +43,66 @@ export class CombatHandler {
     }
   }
 
-  private filterFailedRoles(
-    diceResults: number[],
+  /**
+   * Filters numbers less than numberToBeat
+   * from array.
+   */
+  private filterFailedRolls(
+    diceResults: DieFaces[],
     numberToBeat: number
-  ): number[] {
+  ): DieFaces[] {
     const successfulRolls = diceResults.filter((die) => {
       return die >= numberToBeat;
     });
     return successfulRolls;
   }
 
-  public rollToHit(attacker: Unit, defender: Unit) {
-    const attackerRoleResults: number[] = this.rollingHandler.rollDice(
+  public processCombat(attacker: Unit, defender: Unit): number {
+    /**
+     * roll to hit
+     * roll to wound
+     * roll to save
+     * (add in morality phase)
+     * return damage
+     */
+    return 0;
+  }
+
+  public rollToHit(attacker: Unit): DieFaces[] {
+    const attackerRoleResults: DieFaces[] = this.rollingHandler.rollDice(
       attacker.models
     );
-    console.log(attackerRoleResults);
-
-    const successfulHits = this.filterFailedRoles(
+    const successfulHits = this.filterFailedRolls(
       attackerRoleResults,
       attacker.ws
     );
 
-    console.log(successfulHits);
+    return successfulHits;
+  }
+
+  public rollToWound(
+    rolls: DieFaces[],
+    attacker: Unit,
+    defender: Unit
+  ): DieFaces[] {
+    const numberToBeat = this.compareStrengthToToughness(
+      attacker.s,
+      defender.t
+    );
+    const successfulWounds = this.filterFailedRolls(rolls, numberToBeat);
+
+    return successfulWounds;
+  }
+
+  public rollSavingThrow(
+    rolls: DieFaces[],
+    attacker: Unit,
+    defender: Unit
+  ): DieFaces[] {
+    const successfulWounds = rolls.length;
+    const saveRolls = this.rollingHandler.rollDice(successfulWounds);
+    const successfulSaves = this.filterFailedRolls(saveRolls, defender.sv);
+
+    return successfulSaves;
   }
 }

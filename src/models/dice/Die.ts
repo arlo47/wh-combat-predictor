@@ -20,7 +20,8 @@ export class Die {
   /**
    * Generates a random number between 1 and 6
    */
-  rollDie() {
-    return Math.floor(Math.random() * this.MAX_NUMBER) + this.MIN_NUMBER;
+  rollDie(): DieFaces {
+    return (Math.floor(Math.random() * this.MAX_NUMBER) +
+      this.MIN_NUMBER) as DieFaces;
   }
 }
