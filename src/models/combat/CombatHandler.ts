@@ -105,7 +105,7 @@ export class CombatHandler {
    */
   private rollToHit(attacker: Unit): DieFaces[] {
     const attackerRoleResults: DieFaces[] = this.rollingHandler.rollDice(
-      attacker.models
+      attacker.unitSize
     );
     const successfulHits = this.filterFailedRolls(
       attackerRoleResults,

@@ -41,4 +41,8 @@ export class Model {
   public get sv() {
     return this._sv;
   }
+
+  public toString() {
+    return this.name;
+  }
 }
