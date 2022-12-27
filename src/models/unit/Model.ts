@@ -1,14 +1,18 @@
-export class Unit {
+export class Model {
   constructor(
+    private _name: string,
     private _ws: number,
     private _bs: number,
     private _s: number,
     private _t: number,
     private _a: number,
     private _ld: number,
-    private _sv: number,
-    private _models: number
+    private _sv: number
   ) {}
+
+  public get name() {
+    return this._name;
+  }
 
   public get ws() {
     return this._ws;
@@ -36,9 +40,5 @@ export class Unit {
 
   public get sv() {
     return this._sv;
-  }
-
-  public get models() {
-    return this._models;
   }
 }

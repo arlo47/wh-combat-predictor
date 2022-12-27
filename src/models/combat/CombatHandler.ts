@@ -1,5 +1,5 @@
 import { RollingHandler } from '../dice/RollingHandler';
-import { Unit } from '../Unit';
+import { Unit } from '../unit/Unit';
 
 export class CombatHandler {
   private static instance: CombatHandler;
@@ -93,9 +93,11 @@ export class CombatHandler {
       defender
     );
 
-    // TODO process wounds with saving throw to calculate damage
+    const woundsAfterSavingThrow =
+      successfulWounds.length - successfulSavingThrows.length;
 
-    return 0;
+    const numberOfWounds = attacker.calculateWounds(woundsAfterSavingThrow);
+    return numberOfWounds;
   }
 
   /**
